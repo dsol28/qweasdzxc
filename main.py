@@ -12,8 +12,10 @@ running = True
 # Инициализируем pygame
 pygame.init()
 screen = pygame.display.set_mode((600, 450))
+
+
 def req():
-    map_request = f"https://static-maps.yandex.ru/1.x/?ll={abs(qwe) % 360},{abs(asd) % 180}&z={zxc % 21}&l=map"
+    map_request = f"https://static-maps.yandex.ru/1.x/?ll={qwe % 180},{asd % 90}&z={zxc % 21}&l=map"
     response = requests.get(map_request)
 
     if not response:
@@ -29,6 +31,8 @@ def req():
     screen.blit(pygame.image.load(map_file), (0, 0))
     pygame.display.flip()
 req()
+
+
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
