@@ -53,11 +53,11 @@ while running:
                     qwe += 10
                     req()
             if event.key == pygame.K_UP:
-                if qwe + 10 <= 90:
+                if asd + 10 <= 90:
                     asd += 10
                     req()
             if event.key == pygame.K_DOWN:
-                if qwe - 10 >= -90:
+                if asd - 10 >= -90:
                     asd -= 10
                     req()
 pygame.quit()
