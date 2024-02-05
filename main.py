@@ -45,19 +45,19 @@ while running:
                 zxc -= 1
                 req()
             if event.key == pygame.K_LEFT:
-                if qwe - 10 >= -180:
+                if qwe - 20 >= -180:
                     qwe -= 10
                     req()
             if event.key == pygame.K_RIGHT:
-                if qwe + 10 <= 180:
+                if qwe + 20 <= 180:
                     qwe += 10
                     req()
             if event.key == pygame.K_UP:
-                if asd + 10 <= 90:
+                if asd + 20 <= 90:
                     asd += 10
                     req()
             if event.key == pygame.K_DOWN:
-                if asd - 10 >= -90:
+                if asd - 20 >= -90:
                     asd -= 10
                     req()
 pygame.quit()
