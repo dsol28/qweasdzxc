@@ -49,7 +49,7 @@ while running:
                     qwe -= 10
                     req()
             if event.key == pygame.K_RIGHT:
-                if qwe + 10 <= 90:
+                if qwe + 10 <= 180:
                     qwe += 10
                     req()
             if event.key == pygame.K_UP:
