@@ -68,6 +68,6 @@ while running:
                 fgh = "sat"
                 req()
             if event.key == pygame.K_e:
-                fgh = "map,skl"
+                fgh = "sat,skl"
                 req()
 pygame.quit()
