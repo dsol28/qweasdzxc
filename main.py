@@ -7,6 +7,7 @@ import requests
 qwe = 10.0
 asd = 10.0
 zxc = 10
+fgh = "map"
 running = True
 
 # Инициализируем pygame
@@ -15,7 +16,7 @@ screen = pygame.display.set_mode((600, 450))
 
 
 def req():
-    map_request = f"https://static-maps.yandex.ru/1.x/?ll={qwe},{asd}&z={zxc % 21}&l=map"
+    map_request = f"https://static-maps.yandex.ru/1.x/?ll={qwe},{asd}&z={zxc % 21}&l={fgh}"
     response = requests.get(map_request)
 
     if not response:
@@ -60,4 +61,13 @@ while running:
                 if asd - 20 >= -90:
                     asd -= 10
                     req()
+            if event.key == pygame.K_q:
+                fgh = "map"
+                req()
+            if event.key == pygame.K_w:
+                fgh = "sat"
+                req()
+            if event.key == pygame.K_e:
+                fgh = "map,skl"
+                req()
 pygame.quit()
