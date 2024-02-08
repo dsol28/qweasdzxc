@@ -1,73 +1,15 @@
-import os
-import sys
+from flask import Flask, render_template
 
-import pygame
-import requests
+app = Flask(__name__)
 
-qwe = 10.0
-asd = 10.0
-zxc = 10
-fgh = "map"
-running = True
-
-# Инициализируем pygame
-pygame.init()
-screen = pygame.display.set_mode((600, 450))
-
-
-def req():
-    map_request = f"https://static-maps.yandex.ru/1.x/?ll={qwe},{asd}&z={zxc % 21}&l={fgh}"
-    response = requests.get(map_request)
-
-    if not response:
-        print("Ошибка выполнения запроса:")
-        print(map_request)
-        print("Http статус:", response.status_code, "(", response.reason, ")")
-        sys.exit(1)
-
-    # Запишем полученное изображение в файл.
-    map_file = "map.png"
-    with open(map_file, "wb") as file:
-        file.write(response.content)
-    screen.blit(pygame.image.load(map_file), (0, 0))
-    pygame.display.flip()
-req()
-
-
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_PAGEUP:
-                zxc += 1
-                req()
-            if event.key == pygame.K_PAGEDOWN:
-                zxc -= 1
-                req()
-            if event.key == pygame.K_LEFT:
-                if qwe - 20 >= -180:
-                    qwe -= 10
-                    req()
-            if event.key == pygame.K_RIGHT:
-                if qwe + 20 <= 180:
-                    qwe += 10
-                    req()
-            if event.key == pygame.K_UP:
-                if asd + 20 <= 90:
-                    asd += 10
-                    req()
-            if event.key == pygame.K_DOWN:
-                if asd - 20 >= -90:
-                    asd -= 10
-                    req()
-            if event.key == pygame.K_q:
-                fgh = "map"
-                req()
-            if event.key == pygame.K_w:
-                fgh = "sat"
-                req()
-            if event.key == pygame.K_e:
-                fgh = "sat,skl"
-                req()
-pygame.quit()
+@app.route('/')
+def zxc():
+    return "Миссия Колонизация Марса"
+@app.route('/index')
+def index():
+    return "И на Марсе будут яблони цвести!"
+@app.route('/username/<name>/<int:number>')
+def username(name, number):
+    return f'qweasd {name} ntt,t {number}'
+if __name__ == '__main__':
+    app.run(host='127.0.0.1', port=8080)
