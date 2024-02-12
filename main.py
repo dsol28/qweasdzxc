@@ -8,12 +8,15 @@ def zxc():
 @app.route('/index')
 def index():
     return "И на Марсе будут яблони цвести!"
-@app.route('/username/<name>/<int:number>')
-def username(name, number):
-    return f'qweasd {name} ntt,t {number}'
 @app.route('/image_mars')
 def image_mars():
     return render_template("index.html")
+@app.route('/promotion')
+def promotion():
+    return "Человечество вырастает из детства.<br>Человечеству мала одна планета.<br>Мы сделаем обитаемыми безжизненные пока планеты.<br>И начнем с Марса!<br>Присоединяйся!"
+@app.route('/promotion_image')
+def promotion_image():
+    return render_template("index2.html")
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8080)
