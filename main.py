@@ -17,7 +17,7 @@ def key_pressed(event):
     if event.keysym == 'Up':
         move_wrap(player, (0, -step))
     # Здесь нужно дописать то, что нужно,
-    # чтобы все остальные клавиши работали
+    # чтобы все остальные клавиши работалиsss
     check_move()
 
 
