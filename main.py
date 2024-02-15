@@ -1,31 +1,48 @@
-from flask import Flask, render_template
-from flask import request
-app = Flask(__name__)
-
-@app.route('/')
-def zxc():
-    return "Миссия Колонизация Марса"
-@app.route('/index')
-def index():
-    return "И на Марсе будут яблони цвести!"
-@app.route('/image_mars')
-def image_mars():
-    return render_template("index.html")
-@app.route('/promotion')
-def promotion():
-    return "Человечество вырастает из детства.<br>Человечеству мала одна планета.<br>Мы сделаем обитаемыми безжизненные пока планеты.<br>И начнем с Марса!<br>Присоединяйся!"
-@app.route('/promotion_image')
-def promotion_image():
-    return render_template("index2.html")
-@app.route('/asronaut_selection', methods=['GET', 'POST'])
-def asronaut_selection():
-    if request.method == 'GET':
-        return render_template("index3.html")
-    elif request.method == 'POST':
-        for key, value in request.form.items():
-            print(value)
-        return render_template("index3.html")
+import tkinter
+import random
 
 
-if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=8080)
+def move_wrap(obj, move):
+    canvas.move(obj, move[0], move[1])
+    # Здесь нужно сделать так, чтобы ушедший
+    # "за экран" игрок выходил с другой стороны
+
+
+def check_move():
+    if canvas.coords(player) == canvas.coords(exit):
+        label.config(text="Победа!")
+
+
+def key_pressed(event):
+    if event.keysym == 'Up':
+        move_wrap(player, (0, -step))
+    # Здесь нужно дописать то, что нужно,
+    # чтобы все остальные клавиши работали
+    check_move()
+
+
+master = tkinter.Tk()
+
+step = 60
+N_X = 10
+N_Y = 10
+canvas = tkinter.Canvas(master, bg='blue',
+                        width=step * N_X, height=step * N_Y)
+
+player_pos = (random.randint(0, N_X - 1) * step,
+              random.randint(0, N_Y - 1) * step)
+exit_pos = (random.randint(0, N_X - 1) * step,
+            random.randint(0, N_Y - 1) * step)
+
+player = canvas.create_oval((player_pos[0], player_pos[1]),
+                            (player_pos[0] + step, player_pos[1] + step),
+                            fill='green')
+exit = canvas.create_oval((exit_pos[0], exit_pos[1]),
+                          (exit_pos[0] + step, exit_pos[1] + step),
+                          fill='yellow')
+
+label = tkinter.Label(master, text="Найди выход")
+label.pack()
+canvas.pack()
+master.bind("<KeyPress>", key_pressed)
+master.mainloop()
