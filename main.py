@@ -13,7 +13,7 @@ def image_mars():
     return render_template("index.html")
 @app.route('/promotion')
 def promotion():
-    return "Человечество вырастает из детства.  <br>Человечеству мала одна планета.<br>Мы сделаем обитаемыми безжизненные пока планеты.<br>И начнем с Марса!<br>Присоединяйся!"
+    return "Человечество вырастает из детства.   <br>Человечеству мала одна планета.<br>Мы сделаем обитаемыми безжизненные пока планеты.<br>И начнем с Марса!<br>Присоединяйся!"
 @app.route('/promotion_image')
 def promotion_image():
     return render_template("index2.html")
