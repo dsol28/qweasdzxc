@@ -2,9 +2,13 @@ from flask import Flask, render_template
 from flask import request
 app = Flask(__name__)
 
-@app.route('/')
-def zxc():
-    return "Миссия Колонизация Марса"
+@app.route('/<user_input>')
+def zxc(user_input):
+    params = {
+        'zxc': user_input,
+        'news':['qwe', 'asd', 'fgh']
+    }
+    return render_template('index4.html', **params)
 @app.route('/index')
 def index():
     return "И на Марсе будут яблони цвести!"
@@ -13,7 +17,7 @@ def image_mars():
     return render_template("index.html")
 @app.route('/promotion')
 def promotion():
-    return "Человечество вырастает из детства.   <br>Человечеству мала одна планета.<br>Мы сделаем обитаемыми безжизненные пока планеты.<br>И начнем с Марса!<br>Присоединяйся!"
+    return "Человечество вырастает из детства.    <br>Человечеству мала одна планета.<br>Мы сделаем обитаемыми безжизненные пока планеты.<br>И начнем с Марса!<br>Присоединяйся!"
 @app.route('/promotion_image')
 def promotion_image():
     return render_template("index2.html")
