@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route('/<user_input>')
 def zxc(user_input):
     params = {
-        'zxc': user_input,
+        'title': user_input,
         'news':['qwe', 'asd', 'fgh']
     }
     return render_template('index4.html', **params)
